@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachet Smeta - Сметы</title>
+    <link rel="stylesheet" href="smetas.css">
+</head>
+<body>
+    <div class="site-container">
+        <header>
+            <h1>Rachet Smeta</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="smetas.html">Сметы</a></li>
+                    <li><a href="tasks.html">Задачи</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+<main>
+        <main>
+            <h2>Сметы</h2>
+            <form id="smetaForm">
+                <label for="materials">Выберите материалы:</label>
+                <div id="materialsContainer">
+                    <div>
+                        <select name="materials">
+                            <option value="brick">Кирпич</option>
+                            <option value="cement">Цемент</option>
+                            <option value="wood">Дерево</option>
+                            <option value="steel">Сталь</option>
+                            <option value="glass">Стекло</option>
+                            <option value="stone">Камень</option>
+                            <option value="plastic">Пластик</option>
+                        </select>
+                        <input type="number" name="quantity" min="1" placeholder="Количество">
+                    </div>
+                </div>
+                <button type="button" class="button" onclick="addMaterial()">Добавить материал</button>
+                <br>
+                <label for="services">Выберите услуги:</label>
+                <div id="servicesContainer">
+                    <div>
+                        <select name="services">
+                            <option value="construction">Строительство</option>
+                            <option value="design-interior">Дизайн интерьера</option>
+                            <option value="design-landscape">Ландшафтный дизайн</option>
+                            <option value="installation">Монтаж</option>
+                            <option value="repair">Ремонт</option>
+                            <option value="consulting">Консалтинг</option>
+                            <option value="plumbing">Сантехника</option>
+                            <option value="electric">Электрика</option>
+                        </select>
+                        <input type="text" name="serviceDetail" placeholder="Описание услуги">
+                        <input type="number" name="serviceQuantity" min="1" placeholder="Количество (услуги)">
+                    </div>
+                </div>
+                <button type="button" class="button" onclick="addService()">Добавить услугу</button>
+                <br>
+                <button type="submit" class="button">Рассчитать</button>
+            </form>
+
+            <div id="result"></div>
+        </main>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script>
+        function addMaterial() {
+            const container = document.getElementById('materialsContainer');
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <select name="materials">
+                    <option value="brick">Кирпич</option>
+                    <option value="cement">Цемент</option>
+                    <option value="wood">Дерево</option>
+                    <option value="steel">Сталь</option>
+                    <option value="glass">Стекло</option>
+                    <option value="stone">Камень</option>
+                    <option value="plastic">Пластик</option>
+                </select>
+                <input type="number" name="quantity" min="1" placeholder="Количество">
+            `;
+            container.appendChild(div);
+        }
+
+        function addService() {
+            const container = document.getElementById('servicesContainer');
+            const div = document.createElement('div');
+            div.innerHTML = `
+                <select name="services">
+                    <option value="construction">Строительство</option>
+                    <option value="design-interior">Дизайн интерьера</option>
+                    <option value="design-landscape">Ландшафтный дизайн</option>
+                    <option value="installation">Монтаж</option>
+                    <option value="repair">Ремонт</option>
+                    <option value="consulting">Консалтинг</option>
+                    <option value="plumbing">Сантехника</option>
+                    <option value="electric">Электрика</option>
+                </select>
+                <input type="text" name="serviceDetail" placeholder="Описание услуги">
+                <input type="number" name="serviceQuantity" min="1" placeholder="Количество (услуги)">
+            `;
+            container.appendChild(div);
+        }
+
+        document.getElementById('smetaForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const materialElements = document.querySelectorAll('#materialsContainer > div');
+            const materials = Array.from(materialElements).map(div => ({
+                material: div.querySelector('select').value,
+                quantity: div.querySelector('input[name="quantity"]').value
+            }));
+
+            const serviceElements = document.querySelectorAll('#servicesContainer > div');
+            const services = Array.from(serviceElements).map(div => ({
+                service: div.querySelector('select').value,
+                detail: div.querySelector('input[name="serviceDetail"]').value,
+                quantity: div.querySelector('input[name="serviceQuantity"]').value
+            }));
+
+            const workbook = XLSX.utils.book_new();
+            const worksheetData = [['Материал', 'Количество', 'Услуга', 'Описание услуги', 'Количество (услуги)']];
+            materials.forEach(item => {
+                worksheetData.push([item.material, item.quantity, '', '', '']);
+            });
+            services.forEach(item => {
+                worksheetData.push(['', '', item.service, item.detail, item.quantity]);
+            });
+            const worksheet = XLSX.utils.aoa_to_sheet(worksheetData);
+            XLSX.utils.book_append_sheet(workbook, worksheet, 'Смета');
+            XLSX.writeFile(workbook, 'smeta.xlsx');
+
+            const rate = await getExchangeRate('USD', 'TJS');
+            const totalInUSD = 100; 
+            const totalInTJS = totalInUSD * rate;
+            document.getElementById('result').innerText = `Итоговая сумма в TJS: ${totalInTJS}`;
+        });
+
+        async function getExchangeRate(fromCurrency, toCurrency) {
+            const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${fromCurrency}`);
+            const data = await response.json();
+            return data.rates[toCurrency];
+        }
+    </script>
+</body>
+</html>

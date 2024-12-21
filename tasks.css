@@ -1,0 +1,205 @@
+/* projects.css */
+
+/* Сброс стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Общее оформление для body */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    background-image: url("img/фон.png"); /* Путь к фону */
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    color: rgb(238, 232, 232); /* Цвет текста */
+}
+
+/* Оформление заголовка */
+header {
+    background-color: rgba(19, 18, 18, 0.7); /* Темный полупрозрачный фон */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    color: inherit; /* Унаследовать цвет от body */
+}
+
+/* Оформление навигации */
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* Выравнивание меню по центру */
+}
+
+nav li {
+    display: inline-block; /* Расположение элементов меню в ряд */
+    margin: 0 15px; /* Отступы между элементами меню */
+}
+
+nav a {
+    color: white; /* Цвет текста меню */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #ff9800; /* Оранжевый цвет при наведении */
+}
+
+/* Основное оформление */
+main {
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон */
+}
+
+.site-container {
+    max-width: 1200px; /* Максимальная ширина контейнера */
+    margin: 0 auto; /* Центрирование контейнера */
+    padding: 20px; /* Отступы внутри контейнера */
+}
+
+/* Заголовки и текст */
+header {
+    background: #333; /* Темный фон для заголовка */
+    color: #fff; /* Цвет текста заголовка */
+    padding: 10px 0; /* Отступы в заголовке */
+    text-align: center; /* Центрирование текста */
+}
+
+h1 {
+    margin: 0; /* Убираем внешние отступы */
+}
+
+h2 {
+    color: #838080; /* Цвет заголовков второго уровня */
+}
+
+h3 {
+    border-bottom: 2px solid #333; /* Подчеркивание заголовков третьего уровня */
+    padding-bottom: 10px; /* Отступ снизу */
+    font-size: 1.5em; /* Размер шрифта для заголовка */
+}
+
+/* Стили навигационного меню */
+.main-nav ul {
+    list-style: none; /* Убираем маркированный список */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.main-nav li {
+    display: inline; /* Выводим элементы списка в ряд */
+    margin-right: 20px; /* Отступы между элементами меню */
+}
+
+.main-nav a {
+    color: #fff; /* Цвет ссылок */
+    text-decoration: none; /* Убираем подчеркивание */
+}
+
+/* Стили секции задач */
+.tasks-section {
+    background: #1f1d1d; /* Белый фон для секции */
+    padding: 20px; /* Отступы внутри секции */
+    border-radius: 5px; /* Закругление углов */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Тень для секции */
+    margin-top: 20px; /* Отступ сверху */
+}
+
+/* Стили для галереи */
+.gallery {
+    display: flex; /* Flexbox для выравнивания по горизонтали */
+    justify-content: flex-start; /* Выравнивание по началу */
+    flex-wrap: wrap; /* Позволяет переносить изображения на следующую строку */
+    margin: 20px 0; /* Отступы сверху и снизу */
+}
+
+.gallery-item {
+    margin: 10px; /* Отступы между изображениями */
+    flex: 0 0 120px; /* Фиксированная ширина для изображений (120px) */
+    max-width: 120px; /* Максимальная ширина изображения */
+}
+
+.thumbnail {
+    width: 100%; /* Изображения занимают всю ширину родительского элемента */
+    height: auto; /* Автоматическая высота */
+    transition: transform 0.3s ease; /* Плавное увеличения при наведении */
+}
+
+.thumbnail:hover {
+    transform: scale(1.05); /* Увеличение миниатюры при наведении */
+}
+
+
+.close {
+    position: absolute; /* Абсолютное позиционирование для кнопки закрытия */
+    top: 15px; /* Расположение сверху */
+    right: 35px; /* Расположение справа */
+    color: rgb(70, 65, 65); /* Цвет кнопки закрытия */
+    font-size: 40px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    transition: color 0.3s ease; /* Плавный переход цвета */
+}
+
+.close:hover, .close:focus {
+    color: #ff9800; /* Цвет при наведении */
+    text-decoration: none; /* Убираем подчеркивание */
+    cursor: pointer; /* Курсор в виде руки */
+}
+
+/* Стили для кнопок формы */
+button[type="submit"] {
+    background-color: #333; /* Цвет фона кнопки */
+    color: #fff; /* Цвет текста кнопки */
+    border: none; /* Убираем границу */
+    padding: 10px 20px; /* Отступы внутрь кнопки */
+    cursor: pointer; /* Курсор в виде руки */
+    border-radius: 5px; /* Закругление углов кнопки */
+    transition: background-color 0.3s ease; /* Плавный переход цвета фона */
+}
+
+button[type="submit"]:hover {
+    background-color: #919191; /* Цвет фона кнопки при наведении */
+}
+
+/* Стили для формы */
+form {
+    margin-top: 20px; /* Отступ сверху */
+}
+
+form label {
+    display: block; /* Каждой метке выделяется свой блок */
+    margin: 10px 0 5px; /* Отступы */
+}
+
+form input, form textarea {
+    width: calc(100% - 20px); /* Ширина поля с учетом отступов */
+    padding: 10px; /* Отступы внутри полей */
+    border: 1px solid #251f1f31; /* Цвет границы */
+    border-radius: 5px; /* Закругление углов */
+}
+
+form textarea {
+    resize: vertical; /* Ограничение на изменение размера текста */
+    min-height: 100px; /* Минимальная высота */
+}
+
+/* Стили для подвала страницы */
+footer {
+    text-align: center; /* Центрирование текста */
+    margin: 20px 0; /* Отступы */
+    color: #ffffff; /* Цвет текста подвала */
+}

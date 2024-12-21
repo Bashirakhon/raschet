@@ -1,0 +1,179 @@
+/* projects.css */
+
+/* Сброс стилей */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Общее оформление для body */
+body {
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    background-image: url("img/фон.png"); /* Путь к фону */
+    background-size: cover;
+    background-attachment: fixed;
+    background-blend-mode: multiply;
+    color: rgb(209, 200, 200); /* Цвет текста */
+}
+
+/* Оформление заголовка */
+header {
+    background-color: rgba(19, 18, 18, 0.7); /* Темный полупрозрачный фон */
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin-bottom: 10px;
+    font-size: 2.5em;
+    color: inherit; /* Унаследовать цвет от body */
+}
+
+/* Оформление навигации */
+nav {
+    margin-top: 10px;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center; /* Выравнивание меню по центру */
+}
+
+nav li {
+    display: inline-block; /* Расположение элементов меню в ряд */
+    margin: 0 15px; /* Отступы между элементами меню */
+}
+
+nav a {
+    color: white; /* Цвет текста меню */
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover {
+    background-color: #ff9800; /* Оранжевый цвет при наведении */
+}
+
+/* Основное оформление */
+main {
+    padding: 20px;
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон */
+}
+.site-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: rgba(19, 18, 18, 0.7);
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5em;
+    color: inherit;
+}
+
+main {
+    flex: 1;
+    padding: 20px;
+    color: inherit;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+h2 {
+    margin-top: 30px;
+    font-size: 24px;
+    color: rgb(255, 255, 255);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+form {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #30475e;
+}
+
+select, input[type="number"], input[type="text"], button {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border 0.3s, box-shadow 0.3s;
+}
+
+select:focus, input[type="number"]:focus, input[type="text"]:focus {
+    border-color: #30475e;
+    box-shadow: 0 0 5px rgba(48, 71, 94, 0.5);
+    outline: none;
+}
+
+button {
+    background-color: #ff9800; /* Цвет кнопки */
+    color: rgb(28, 26, 26);
+    border: none;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 18px;
+    text-transform: uppercase;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #e68a00;
+}
+
+#result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff9800; /* Цвет текста результата */
+}
+
+div[id^="materialsContainer"] > div,
+div[id^="servicesContainer"] > div {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+div[id^="materialsContainer"] select,
+div[id^="servicesContainer"] select {
+    flex: 1;
+}
+
+div[id^="materialsContainer"] input,
+div[id^="servicesContainer"] input {
+    flex: 2;
+}
+
+/* Media Query - управление адаптивностью */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column; /* Стекание элементов вертикально на меньших экранах */
+    }
+}

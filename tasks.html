@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rachet Smeta - Задачи</title>
+    <link rel="stylesheet" href="tasks.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="site-container">
+        <header>
+            <h1>Rachet Smeta</h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="projects.html">Проекты</a></li>
+                    <li><a href="smetas.html">Сметы</a></li>
+                    <li><a href="tasks.html">Задачи</a></li>
+                    <li><a href="contacts.html">Контакты</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <section class="tasks-section">
+                <h2>Наши задачи</h2>
+                <p>Наша команда всегда готова к новым вызовам и решает задачи любой сложности, связанные со строительством и сметной документацией.</p>
+
+                <h3>Галерея выполненных работ</h3>
+                <div class="gallery">
+                    <div class="gallery-item" onclick="openModal('img/проект стадиона Динамо с обновлением трибун, поля, раздевалок и инфраструктуры для болельщиков.png')">
+                        <img src="img/проект стадиона Динамо с обновлением трибун, поля, раздевалок и инфраструктуры для болельщиков.png" alt="Проект 1" class="thumbnail">
+                    </div>
+                    <div class="gallery-item" onclick="openModal('img/современный торговый центр с разнообразными магазинами, фудкортом и развлекательными зонами (1).png')">
+                        <img src="img/современный торговый центр с разнообразными магазинами, фудкортом и развлекательными зонами (1).png" alt="Проект 2" class="thumbnail">
+                    </div>
+                    <div class="gallery-item" onclick="openModal('img/Ремонт и модернизация школы №123 Обновление учебных помещений, лабораторий, спортивного зала и столовой школы №123 с использованием современных материалов и технологий.png')">
+                        <img src="img/Ремонт и модернизация школы №123 Обновление учебных помещений, лабораторий, спортивного зала и столовой школы №123 с использованием современных материалов и технологий.png" alt="Проект 3" class="thumbnail">
+                    </div>
+                </div>
+                
+
+                <h3>Заказать услугу</h3>
+                <form action="submit_task.php" method="POST">
+                    <label for="name">Имя:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="contact">Контактный номер:</label>
+                    <input type="text" id="contact" name="contact" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <label for="description">Описание задачи:</label>
+                    <textarea id="description" name="description" required></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+            </section>
+        </main>
+        <footer>
+            <p>2024 Rachet Smeta</p>
+        </footer>
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById("modal");
+            const modalImage = document.getElementById("modal-image");
+            modal.style.display = "block";
+            modalImage.src = imageSrc;
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById("modal");
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
